@@ -1,0 +1,43 @@
+package structure2;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+/**
+ Test_Name:TiXiJieGou2
+ Date:2023.10.23
+ Number:202131060927
+ Name:Tang_Zhizhen
+ **/
+
+public class Output {
+    private ArrayList<String> kwicList;
+    private BufferedWriter outputFile;
+
+    public Output(ArrayList<String> kwicList) {
+        this.kwicList = kwicList;
+    }
+
+    public void output(String filename){
+        Iterator<String> it = kwicList.iterator();
+        try {
+            outputFile = new BufferedWriter(new FileWriter(filename));
+            while (it.hasNext()) {
+                outputFile.write(it.next()+"\n");
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                if (outputFile!=null) {
+                    outputFile.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
